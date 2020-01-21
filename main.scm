@@ -110,6 +110,7 @@
 ; ----------------------------------------
 ; [ Example 8 ]
 
+
 (define twice 
   (lambda (fn)
     (lambda (x)
@@ -118,9 +119,10 @@
   )
 )
 
-(define (square x) (* x x))
+(define (square x)(* x x))
 
 (display "Example 8 (twice (twice square)): ")
-(display (twice (twice square)))
+(define quad-square (twice (twice square)))
+(display (quad-square 2))
 (newline)
 ; ----------------------------------------

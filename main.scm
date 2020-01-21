@@ -42,9 +42,8 @@
   (/ (! n) (* (! (- n k)) (! k)))
 )
 
-(display "Example 3 (C 5 0): ")
-; BROKEN
-;(display (= (C 5 5) (+ (C 4 4) (C 4 5))))
+(display "Example 3 (C 10 3): ")
+(display (C 10 3))
 (newline)
 ; ----------------------------------------
 ; [ Example 4 ]
@@ -80,7 +79,19 @@
 ; ----------------------------------------
 ; [ Example 6 ]
 
+(define (intersect a b)
+  (if (null? a)
+    '()
+    (if (member (car a) b)
+      (cons (car a) (intersect (cdr a) b))
+      (intersect (cdr a) b)
+    )
+  )
+)
 
+(display "Example 6: ")
+(display (intersect (list 2 3 4 5) (list 7 6 5 4)))
+(newline)
 ; ----------------------------------------
 ; [ Example 7 ]
 

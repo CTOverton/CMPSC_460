@@ -58,15 +58,27 @@
 )
 
 (display "Example 5 (getMax (list 1 3 2 7 5)): ")
-(define x (list 1 3 2 7 5))
-(display (getMax x))
+(display (getMax (list 1 3 2 7 5)))
 (newline)
 ; ----------------------------------------
 ; [ Example 6 ]
 
+
 ; ----------------------------------------
 ; [ Example 7 ]
 
+(define (lengthTailRecursive l) 
+  (let helper [(l l) (count 0)]
+    (if (= (length l) 0)
+        count
+        (helper (cdr l) (+ count 1))
+    )
+  )
+)
+
+(display "Example 7 (lengthTailRecursive (list 1 3 2 7 5)): ")
+(display (lengthTailRecursive (list 1 3 2 7 5)))
+(newline)
 ; ----------------------------------------
 ; [ Example 8 ]
 

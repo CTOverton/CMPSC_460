@@ -52,9 +52,9 @@ detach node graph = [ x | x <- graph, fst x /= node, snd x /= node]
 -- [ Example 4 ]
 
 paths:: Node -> Node -> Graph -> [Path]
-paths v1 v2 graph
-  | v1 == v2  = [[v1]]
-  | otherwise = [ fst (v1,y):recur | y <- adjacent v1 graph, recur <- paths y v2 graph ]
+paths n1 n2 graph
+  | n1 == n2  = [[n1]]
+  | otherwise = [ fst (n1,x):xs | x <- adjacent n1 graph, xs <- paths x n2 graph ]
 
 
 main::IO()

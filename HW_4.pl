@@ -3,25 +3,18 @@
 
 sorted([]).
 sorted([_]).
-sorted([A,B|C]) :-
-    A =< B,
-    sorted([B|C]).
+sorted([A,B|C]) :- A =< B, sorted([B|C]).
 
 % ----------------------------------------
 % [ Example 2 ]
 
-subsum(Set, Sum, Subset) :-
-    subset(Set, Subset),
-    sum(Subset, Sum).
+subsum(Set, Sum, Subset) :- subset(Set, Subset), sum(Subset, Sum).
 
 sum([],0).
-sum([H|T], Sum) :-
-    sum(T, Tsum),
-    Sum is Tsum+H.
+sum([H|T], Sum) :- sum(T, Tsum), Sum is Tsum+H.
 
 subset([], []).
-subset([H|T1], [H|T2]) :-
-    subset(T1, T2).
+subset([H|T1], [H|T2]) :- subset(T1, T2).
 subset([_|T1],T2) :- subset(T1,T2).
 
 % ----------------------------------------
@@ -42,43 +35,20 @@ flat(List, Flatlist) :- flatten(List, Flatlist).
 % ----------------------------------------
 % [ Example 6 ]
 
-expression(X) :-
-    num(X).
-expression(X) :-
-    append(List1, [+|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    append(List1, [-|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    append(List1, [*|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    append(List1, [/|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    append(List1, ['('|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    append(List1, [')'|List2], X),
-    num(List1),
-    expression(List2).
-expression(X) :-
-    atomic(X).
+expression(X) :- num(X).
+expression(X) :- append(List1, [+|List2], X), num(List1), expression(List2).
+expression(X) :- append(List1, [-|List2], X), num(List1), expression(List2).
+expression(X) :- append(List1, [*|List2], X), num(List1), expression(List2).
+expression(X) :- append(List1, [/|List2], X), num(List1), expression(List2).
+expression(X) :- append(List1, ['('|List2], X), num(List1), expression(List2).
+expression(X) :- append(List1, [')'|List2], X), num(List1), expression(List2).
+expression(X) :- atomic(X).
 
 % ----------------------------------------
 % [ Example 7 ]
 
 btree([])
-btree([H|[L|R]]) :-
-    atomic(H),
-    btree(L),
-    btree(R).
+btree([H|[L|R]]) :- atomic(H), btree(L), btree(R).
 
 % ----------------------------------------
 % [ Example 8 ]

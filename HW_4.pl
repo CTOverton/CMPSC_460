@@ -42,8 +42,47 @@ flat(List, Flatlist) :- flatten(List, Flatlist).
 % ----------------------------------------
 % [ Example 6 ]
 
+expression(X) :-
+    num(X).
+expression(X) :-
+    append(List1, [+|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    append(List1, [-|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    append(List1, [*|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    append(List1, [/|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    append(List1, ['('|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    append(List1, [')'|List2], X),
+    num(List1),
+    expression(List2).
+expression(X) :-
+    atomic(X).
+
 % ----------------------------------------
 % [ Example 7 ]
 
+btree([])
+btree([H|[L|R]]) :-
+    atomic(H),
+    btree(L),
+    btree(R).
+
 % ----------------------------------------
 % [ Example 8 ]
+
+leaves([L,N,R],Res ) :- leaves(L,Res1 ), leaves(R,Res2 ), append(Res1, Res2, Res).
+
+height([L,N,R], Res) :- height(L, Res1), height(R, res2),  max(Res1, Res2, Res).
